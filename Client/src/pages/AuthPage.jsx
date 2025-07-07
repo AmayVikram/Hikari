@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Star, Mail, Lock, User, ArrowRight, ArrowLeft } from 'lucide-react';
-import { login } from '../features/userSlice';
+import { login, setAccessToken } from '../features/userSlice';
 import { userMethods } from '../serverApi/user';
 import {useDispatch, useSelector} from 'react-redux'
 import { useNavigate } from 'react-router';
@@ -44,6 +44,8 @@ function AuthPages() {
         if(res.success===true)
         {
           dispatch(login({userData:res.userData}))
+          dispatch(setAccessToken({accessToken:res.accessToken}))
+          
             // console.log(res.userData)
             navigate('/profile')
           // setError("Login successful")
@@ -62,7 +64,8 @@ function AuthPages() {
         if(res.success===true)
         {
         //  console.log(res)
-          dispatch(login(res.userData))
+          dispatch(login({userData:res.userData}))
+          dispatch(setAccessToken({accessToken:res.accessToken}))
           navigate('/profile')
           // setError("Signup successful")
           

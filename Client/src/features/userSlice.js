@@ -4,7 +4,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialstate={
     status:false,
-    userData:null
+    userData:null,
+    accessToken:null
 }
 
 export const userSlice = createSlice({
@@ -15,9 +16,13 @@ export const userSlice = createSlice({
             state.status = true
             state.userData = action.payload.userData
         },
+        setAccessToken:(state,action)=>{
+             state.accessToken= action.payload.accessToken
+        },
         logout:(state,action)=>{
             state.status=false
             state.userData = null
+            state.accessToken= null
         },
         updateWatched:(state,action)=>{
             state.userData.watched= action.payload.watched
@@ -29,6 +34,6 @@ export const userSlice = createSlice({
     }
 })
 
-export const  {login,logout,updateWatchlater,updateWatched} = userSlice.actions
+export const  {login,logout,updateWatchlater,updateWatched,setAccessToken} = userSlice.actions
 
 export const userReducer = userSlice.reducer

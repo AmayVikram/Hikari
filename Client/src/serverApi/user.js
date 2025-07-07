@@ -4,7 +4,7 @@ export const userMethods = {
     login: async (userData) => {
         try {
             const res = await axios.post('/api/login', userData)
-            return { success: true, userData: res.data }
+            return { success: true, userData: res.data.userData,accessToken:res.data.accessToken }
         } catch (error) {
             return { success: false, error: error.response.data.message || error.message }
         }
@@ -13,7 +13,7 @@ export const userMethods = {
     signUp: async (userData) => {
         try {
             const res = await axios.post('/api/signup', userData)
-            return { success: true, userData: res.data }
+            return { success: true, userData: res.data,accessToken:res.data.accessToken  }
         } catch (error) {
             return { success: false, error: error.response.data.message || error.message }
         }

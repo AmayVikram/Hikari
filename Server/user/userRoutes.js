@@ -15,6 +15,10 @@ router.post('/updateFavourites',userControllers.updateFavourites)
 
 router.post('/updateWatchlater',userControllers.updateWatchLater)
 
+router.get('/api/refresh',userControllers.refreshToken)
+
+
+
 
 
 
